@@ -28,8 +28,8 @@ if ( isset( $_POST["Login"]) ) {
 <html>
     <head>
         <title>Eventica | Register</title>
-        <link rel = "icon" type = "image/png" href = "/icon.png">
-        <link rel = "apple-touch-icon" type = "image/png" href = "/icon.png"/>
+        <link rel = "icon" type = "image/png" href = "icon.png">
+        <link rel = "apple-touch-icon" type = "image/png" href = "icon.png">
     </head>
 	<body>
     <div>
