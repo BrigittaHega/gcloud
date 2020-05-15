@@ -28,12 +28,12 @@ if ( isset( $_POST["Login"]) ) {
 <html>
     <head>
         <title>Eventica | Register</title>
-        <link rel = "icon" type = "image/png" href = "icon.png">
-        <link rel = "apple-touch-icon" type = "image/png" href = "icon.png">
+        <link rel = "icon" href = "icon.png">
+        <link rel = "apple-touch-icon" href = "icon.png">
     </head>
 	<body>
     <div>
-	   <img src="eventica.png" width="42" height="42"> <h1>Register</h1>
+	   <img src="eventica.png" alt="Eventica" width="42" height="42"> <h1>Register</h1>
     </div>
     <div>
 	    <h3>Please fill your data below to register.</h3>

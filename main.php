@@ -9,8 +9,8 @@ if(!isset($_SESSION["id"])) {
 <html>
 <head>
 	<title>Eventica | Home</title>
-	<link rel = "icon" type = "image/png" href = "icon.png">
-	<link rel = "apple-touch-icon" type = "image/png" href = "icon.png">
+	<link rel = "icon" href = "icon.png">
+	<link rel = "apple-touch-icon" href = "icon.png">
 </head>
 <body>
     <div>

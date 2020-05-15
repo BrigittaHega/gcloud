@@ -34,8 +34,8 @@ if ( isset( $_POST["submit"]) ) {
 <html>
     <head>
         <title>Eventica | Change Password</title>
-        <link rel = "icon" type = "image/png" href = "icon.png">
-        <link rel = "apple-touch-icon" type = "image/png" href = "icon.png">
+        <link rel = "icon" href = "icon.png">
+        <link rel = "apple-touch-icon" href = "icon.png">
     </head>
 <body>
     <div>
