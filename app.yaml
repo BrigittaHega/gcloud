@@ -12,3 +12,6 @@ handlers:
     static_files: \1
     upload: .+\.(gif|png|jpg)$
     application_readable: true
+
+  - url: /icon\.png
+    static_files: icon.png
