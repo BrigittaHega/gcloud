@@ -19,6 +19,8 @@ if ( isset( $_POST["Login"]) ) {
         $user = $datastore->lookup($key);
         if ( !isset( $user['name'] ) ) {
             $user = $datastore->entity('Users', [ 'userid' => $_POST["userid"], 'name' => $_POST["name"], 'password' => $_POST["password"] ]);
+            $datastore->insert($user);
+            header("Location: login.php");
         } else {
             $error = "<span>This ID is already registered! </span>";
         }
