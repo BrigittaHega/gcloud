@@ -1,7 +1,7 @@
 <?php
 use Google\Cloud\Datastore\DatastoreClient;
 use Google\Cloud\Datastore\Query\Query;
-require __DIR__ . '/vendor/autoload.php';
+include_once "vendor/autoload.php";
 $datastore = new DatastoreClient([
     'projectId' => 'cloud-assignment-2-2020'
 ]);

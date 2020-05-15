@@ -1,6 +1,6 @@
 <?php
 session_start();
-require __DIR__ . '/vendor/autoload.php';
+include_once "vendor/autoload.php";
 
 if(!isset($_SESSION["id"])) {
     header("Location: login.php");
