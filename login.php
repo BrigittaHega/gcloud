@@ -1,68 +1,63 @@
+<?php
+use Google\Cloud\Datastore\DatastoreClient;
+use Google\Cloud\Datastore\Query\Query;
+require __DIR__ . '/vendor/autoload.php';
+$datastore = new DatastoreClient([
+    'projectId' => 'cloudassg-2020'
+]);
+
+session_start();
+
+if ( isset( $_POST["login"]) ) {
+    if ( empty( $_POST["userid"]) or empty( $_POST["password"]) ) {
+        $login_error = '<span> User ID or password cannot be empty. </span>';
+    } else {
+        $key = $datastore->key('Users', $_POST["userid"]);
+        $user = $datastore->lookup($key);
+        if ( isset( $user['name'] ) ) {
+            if ( $user['password'] == $_POST["password"] ) {
+                $_SESSION["id"] = $_POST["userid"];
+                $_SESSION["name"] = $user['name'];
+        	    $_SESSION["password"] = $user['password'];
+                header("Location: main.php");
+            } else {
+                <script type="text/javascript">
+            	   alert ("Wrong Password!");
+                </script>
+            }
+        } else {
+            <script type="text/javascript">
+               alert ("Wrong UserID or Password!");
+            </script>
+        }
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Login</title>
+        <title>Eventica | Login</title>
+        <link rel = "icon" type = "image/png" href = "/icon.png">
+        <link rel = "apple-touch-icon" type = "image/png" href = "/icon.png"/>
     </head>
 	<body>
-	<h1>Login</h1>
-	<h3>Please fill your data below to login.</h3>
-    <form method="post">
-		<label>Enter your user Id:</label>
-		<input type="text" name="id" id="id"/>
-		
-		<br>
-		
-		<label>Enter your Password:</label>
-		<input type="password" name="password" id="password"/>
-		
-		<br>
-		
-		<input type="submit" value="Login"/>
-	</form>
-
-
-<?php
-session_start();
-$id = $_POST['id'];
-$password = $_POST['password'];
-#to store in session to be used by other pages
-$_SESSION['id'] = $id;
-$_SESSION['password'] = $password;
-# Includes the autoloader for libraries installed with composer
-require __DIR__ . '/vendor/autoload.php';
-
-# Imports the Google Cloud client library
-use Google\Cloud\Datastore\DatastoreClient;
-use Google\Cloud\Datastore\Query\Query;
-
-# Your Google Cloud Platform project ID
-$projectId = 's3766172-cc2020';
-
-# Instantiates a client
-$datastore = new DatastoreClient([ 'projectId' => $projectId ]);
-$key = $datastore->key('user', $id);
-$entity = $datastore->lookup($key);
-if(($entity["password"]) == $password) 
-{
-?>
-<script type="text/javascript">
-	window.location.href = "main";
-</script>
-<?php
-}
-else
-{?>
-<script type="text/javascript">
-	alert ("User id or password is invalid");
-</script>
-<?php
-}
-
-?>
+    <div>
+	   <img src="eventica.png" width="42" height="42"> <h1>Login</h1>
+    </div>
+    <div>
+	    <h3>Please fill your data below to login.</h3>
+    </div>
+    <div>
+        <form method="post">
+		    <label>Username:</label>
+		    <input type="text" name="id" id="id"/>
+            <br>
+    		<label>Password:</label>
+    		<input type="password" name="password" id="password"/>
+    		<br>
+    		<input type="submit" value="Login"/>
+    	</form>
+    </div>
     </body>
 </html>
-
-
-
-
-
