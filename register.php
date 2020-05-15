@@ -17,7 +17,7 @@ if ( isset( $_POST["Login"]) ) {
     } else {
         $key = $datastore->key('Users', $_POST["userid"]);
         $user = $datastore->lookup($key);
-        if ( !isset( $user['name'] ) ) {
+        if ( is_null($user['name']) ) {
             $user = $datastore->entity('Users', [ 'userid' => $_POST["userid"], 'name' => $_POST["name"], 'password' => $_POST["password"] ]);
             $datastore->insert($user);
             header("Location: login.php");
