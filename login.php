@@ -61,6 +61,7 @@ if ( isset( $_POST["Login"]) ) {
             <br>
             <input type="submit" value="Login"/>
     	</form>
+        <label>Click this to<a href="name.php">register</a>!</label>
     </div>
     </body>
 </html>

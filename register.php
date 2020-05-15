@@ -54,6 +54,7 @@ if ( isset( $_POST["Login"]) ) {
             <br>
             <input type="submit" value="Login"/>
     	</form>
+        <label>Click this to<a href="name.php">login</a> if you already have an account!</label>
     </div>
     </body>
 </html>
