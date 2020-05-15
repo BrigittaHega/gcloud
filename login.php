@@ -40,7 +40,7 @@ if ( isset( $_POST["Login"]) ) {
     </head>
 	<body>
     <div>
-	   <img src="eventica.png" alt="Eventica" width="42" height="42"> <h1>Login</h1>
+	    <h1><img src="eventica.png" alt="Eventica" width="42" height="42"> Login</h1>
     </div>
     <div>
 	    <h3>Please fill your data below to login.</h3>

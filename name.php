@@ -35,6 +35,9 @@ if ( isset( $_POST["submit"]) ) {
     </head>
 <body>
     <div>
+        <h1><img src="eventica.png" alt="Eventica" width="42" height="42"> Change Name</h1>
+    </div>
+    <div>
         <p>Logged in as <?php echo $_SESSION["name"] ?></p><br><br>
         <hr>
         <h1>Change Name</h1>
