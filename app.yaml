@@ -2,17 +2,8 @@ runtime: php55
 api_version: 1
 
 handlers:
-- url: /*
-  script: login.php
-  
-- url: /login
-  script: login.php
-  
-- url: /main
-  script: main.php
-  
-- url: /name
-  script: name.php
-  
-- url: /password
-  script: password.php
+  - url: /(.+\.php)$
+    script: \1
+
+  - url: /*
+    script: login.php
