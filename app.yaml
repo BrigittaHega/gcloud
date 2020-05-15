@@ -8,5 +8,7 @@ handlers:
   - url: /*
     script: login.php
 
-  - url: /(.+\.png)$
-    script: \1
+  - url: /(.+\.(gif|png|jpg))$
+    static_files: \1
+    upload: .+\.(gif|png|jpg)$
+    application_readable: true
