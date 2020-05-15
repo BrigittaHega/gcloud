@@ -7,8 +7,11 @@ $datastore = new DatastoreClient([
 ]);
 
 session_start();
+if(isset($_SESSION["id"])) {
+    header("Location: main.php");
+}
 
-if ( isset( $_POST["login"]) ) {
+if ( isset( $_POST["Login"]) ) {
     if ( empty( $_POST["userid"]) or empty( $_POST["password"]) ) {
         <script type="text/javascript">
            alert ("User ID or password cannot be empty!");
@@ -51,14 +54,12 @@ if ( isset( $_POST["login"]) ) {
 	    <h3>Please fill your data below to login.</h3>
     </div>
     <div>
-        <form method="post">
-		    <label>Username:</label>
-		    <input type="text" name="id" id="id"/>
+        <form action="login.php"  method="post">
+            <label>User ID:</label> <input type="text" name="userid">
             <br>
-    		<label>Password:</label>
-    		<input type="password" name="password" id="password"/>
-    		<br>
-    		<input type="submit" value="Login"/>
+            <label>Password:</label> <input type="password" name="password">
+            <br>
+            <input type="submit" value="Login"/>
     	</form>
     </div>
     </body>

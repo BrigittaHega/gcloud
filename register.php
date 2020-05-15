@@ -7,27 +7,23 @@ $datastore = new DatastoreClient([
 ]);
 
 session_start();
+if(isset($_SESSION["id"])) {
+    header("Location: main.php");
+}
 
-if ( isset( $_POST["login"]) ) {
+if ( isset( $_POST["Login"]) ) {
     if ( empty( $_POST["userid"]) or empty( $_POST["password"]) ) {
-        $login_error = '<span> User ID or password cannot be empty. </span>';
+        <script type="text/javascript">
+           alert ("User ID or password cannot be empty!");
+        </script>
     } else {
         $key = $datastore->key('Users', $_POST["userid"]);
         $user = $datastore->lookup($key);
-        if ( isset( $user['name'] ) ) {
-            if ( $user['password'] == $_POST["password"] ) {
-                $_SESSION["id"] = $_POST["userid"];
-                $_SESSION["name"] = $user['name'];
-        	    $_SESSION["password"] = $user['password'];
-                header("Location: main.php");
-            } else {
-                <script type="text/javascript">
-            	   alert ("Wrong Password!");
-                </script>
-            }
+        if ( !isset( $user['name'] ) ) {
+            $user = $datastore->entity('Users', [ 'userid' => $_POST["userid"], 'name' => $_POST["name"], 'password' => $_POST["password"] ]);
         } else {
             <script type="text/javascript">
-               alert ("Wrong UserID or Password!");
+               alert ("This ID is already registered!");
             </script>
         }
     }
@@ -46,17 +42,17 @@ if ( isset( $_POST["login"]) ) {
 	   <img src="eventica.png" width="42" height="42"> <h1>Register</h1>
     </div>
     <div>
-	    <h3>Please fill your data below to login.</h3>
+	    <h3>Please fill your data below to register.</h3>
     </div>
     <div>
         <form method="post">
-		    <label>Username:</label>
-		    <input type="text" name="id" id="id"/>
+            <label>Name:</label> <input type="text" name="name">
             <br>
-    		<label>Password:</label>
-    		<input type="password" name="password" id="password"/>
-    		<br>
-    		<input type="submit" value="Login"/>
+            <label>User ID:</label> <input type="text" name="userid">
+            <br>
+            <label>Password:</label> <input type="password" name="password">
+            <br>
+            <input type="submit" value="Login"/>
     	</form>
     </div>
     </body>
