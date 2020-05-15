@@ -10,7 +10,9 @@ session_start();
 
 if ( isset( $_POST["login"]) ) {
     if ( empty( $_POST["userid"]) or empty( $_POST["password"]) ) {
-        $login_error = '<span> User ID or password cannot be empty. </span>';
+        <script type="text/javascript">
+           alert ("User ID or password cannot be empty!");
+        </script>
     } else {
         $key = $datastore->key('Users', $_POST["userid"]);
         $user = $datastore->lookup($key);
