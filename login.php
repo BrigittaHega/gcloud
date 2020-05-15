@@ -13,9 +13,7 @@ if(isset($_SESSION["id"])) {
 
 if ( isset( $_POST["Login"]) ) {
     if ( empty( $_POST["userid"]) or empty( $_POST["password"]) ) {
-        <script type="text/javascript">
-           alert ("User ID or password cannot be empty!");
-        </script>
+        $login_error = '<span> User ID or password cannot be empty. </span>';
     } else {
         $key = $datastore->key('Users', $_POST["userid"]);
         $user = $datastore->lookup($key);
@@ -26,20 +24,14 @@ if ( isset( $_POST["Login"]) ) {
         	    $_SESSION["password"] = $user['password'];
                 header("Location: main.php");
             } else {
-                <script type="text/javascript">
-            	   alert ("Wrong Password!");
-                </script>
+                $login_error = "<span>Wrong password.</span>";
             }
         } else {
-            <script type="text/javascript">
-               alert ("Wrong UserID or Password!");
-            </script>
+            $login_error = "<span>User ID or Password is invalid. </span>";
         }
     }
 }
 ?>
-
-<!DOCTYPE html>
 <html>
     <head>
         <title>Eventica | Login</title>
@@ -61,7 +53,8 @@ if ( isset( $_POST["Login"]) ) {
             <br>
             <input type="submit" value="Login"/>
     	</form>
-        <label>Click this to<a href="name.php">register</a>!</label>
+        <label>Click this to <a href="register.php">register</a>!</label><br>
+        <?php echo $login_error ?>
     </div>
     </body>
 </html>

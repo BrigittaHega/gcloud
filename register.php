@@ -13,24 +13,18 @@ if(isset($_SESSION["id"])) {
 
 if ( isset( $_POST["Login"]) ) {
     if ( empty( $_POST["userid"]) or empty( $_POST["password"]) ) {
-        <script type="text/javascript">
-           alert ("User ID or password cannot be empty!");
-        </script>
+        $error = '<span> User ID or password cannot be empty. </span>';
     } else {
         $key = $datastore->key('Users', $_POST["userid"]);
         $user = $datastore->lookup($key);
         if ( !isset( $user['name'] ) ) {
             $user = $datastore->entity('Users', [ 'userid' => $_POST["userid"], 'name' => $_POST["name"], 'password' => $_POST["password"] ]);
         } else {
-            <script type="text/javascript">
-               alert ("This ID is already registered!");
-            </script>
+            $error = "<span>This ID is already registered! </span>";
         }
     }
 }
 ?>
-
-<!DOCTYPE html>
 <html>
     <head>
         <title>Eventica | Register</title>
@@ -54,7 +48,8 @@ if ( isset( $_POST["Login"]) ) {
             <br>
             <input type="submit" value="Login"/>
     	</form>
-        <label>Click this to<a href="name.php">login</a> if you already have an account!</label>
+        <label>Click this to <a href="login.php">login</a> if you already have an account!</label><br>
+        <?php echo $error ?>
     </div>
     </body>
 </html>
