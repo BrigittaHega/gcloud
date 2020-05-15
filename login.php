@@ -21,7 +21,7 @@ if ( isset( $_POST["Login"]) ) {
             if ( $user['password'] == $_POST["password"] ) {
                 $_SESSION["id"] = $_POST["userid"];
                 $_SESSION["name"] = $user['name'];
-        	    $_SESSION["password"] = $user['password'];
+                $_SESSION["password"] = $user['password'];
                 header("Location: main.php");
             } else {
                 $login_error = "<span>Wrong password.</span>";
