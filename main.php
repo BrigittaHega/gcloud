@@ -38,9 +38,6 @@ if( !isset($_SESSION["Login"]) ) {
               background-color: #ffffff;
               color: white;
             }
-            .topnav a.user {
-                float: right;
-            }
 
             .dropdown {
               float: left;

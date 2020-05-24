@@ -39,24 +39,55 @@ if ( isset( $_POST["Login"]) ) {
         <title>Eventica | Login</title>
         <link rel = "icon" href = "icon.png">
         <link rel = "apple-touch-icon" href = "icon.png">
+        <style>
+            .topnav {
+              background-color: #333;
+              overflow: hidden;
+            }
+
+            .topnav a {
+              float: left;
+              color: #f2f2f2;
+              text-align: center;
+              padding: 14px 16px;
+              text-decoration: none;
+              font-size: 17px;
+            }
+
+            .topnav a:hover, .dropdown:hover .dropbtn {
+              background-color: #ddd;
+              color: black;
+            }
+
+            .topnav a:active {
+              background-color: #ffffff;
+              color: white;
+            }
+        </style>
     </head>
 	<body>
-    <div>
-	    <h1>Login</h1>
-    </div>
-    <div>
-	    <h3>Please fill your data below to login.</h3>
-    </div>
-    <div>
-        <form action="login.php"  method="POST">
-            <label>User ID:</label> <input type="text" name="userid">
-            <br>
-            <label>Password:</label> <input type="password" name="password">
-            <br>
-            <input type="submit" name= "Login" value="Login"/>
-    	</form>
-        <label>Click this to <a href="register.php">register</a>!</label><br>
-        <?php echo $login_error ?>
-    </div>
+        <div class="topnav">
+            <a  href="index.php">Home</a>
+            <a href="events.php">Events</a>
+            <a href="login.php">Login</a>
+            <a href="register.php">Register</a>
+        </div>
+        <div>
+    	    <h1>Login</h1>
+        </div>
+        <div>
+    	    <h3>Please fill your data below to login.</h3>
+        </div>
+        <div>
+            <form action="login.php"  method="POST">
+                <label>User ID:</label> <input type="text" name="userid">
+                <br>
+                <label>Password:</label> <input type="password" name="password">
+                <br>
+                <input type="submit" name= "Login" value="Login"/>
+        	</form>
+            <label>Click this to <a href="register.php">register</a>!</label><br>
+            <?php echo $login_error ?>
+        </div>
     </body>
 </html>
