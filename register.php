@@ -7,18 +7,18 @@ $datastore = new DatastoreClient([
 ]);
 
 session_start();
-if(isset($_SESSION["id"])) {
+if( isset($_SESSION["Login"]) ) {
     header("Location: main.php");
 }
 
-if ( isset( $_POST["Login"]) ) {
-    if ( empty( $_POST["userid"]) or empty( $_POST["password"]) ) {
-        $error = '<span> User ID or password cannot be empty. </span>';
+if ( isset( $_POST["Submit"]) ) {
+    if ( empty( $_POST["userid"]) or empty( $_POST["password"] ) or empty( $_POST["name"]) ) {
+        $error = '<span> User ID or Name or Password cannot be empty. </span>';
     } else {
         $key = $datastore->key('Users', $_POST["userid"]);
         $user = $datastore->lookup($key);
-        if ( is_null($user['name']) ) {
-            $user = $datastore->entity('Users', [ 'userid' => $_POST["userid"], 'name' => $_POST["name"], 'password' => $_POST["password"] ]);
+        if ( empty($user['name']) ) {
+            $user = $datastore->entity($key, [ 'name' => $_POST["name"], 'password' => $_POST["password"] ]);
             $datastore->insert($user);
             header("Location: login.php");
         } else {
@@ -27,6 +27,7 @@ if ( isset( $_POST["Login"]) ) {
     }
 }
 ?>
+
 <html>
     <head>
         <title>Eventica | Register</title>
@@ -35,20 +36,20 @@ if ( isset( $_POST["Login"]) ) {
     </head>
 	<body>
     <div>
-	    <h1><img src="eventica.png" alt="Eventica" width="42" height="42"> Register</h1>
+	    <h1> Register</h1>
     </div>
     <div>
 	    <h3>Please fill your data below to register.</h3>
     </div>
     <div>
-        <form method="post">
+        <form action="register.php" method="POST">
             <label>Name:</label> <input type="text" name="name">
             <br>
             <label>User ID:</label> <input type="text" name="userid">
             <br>
             <label>Password:</label> <input type="password" name="password">
             <br>
-            <input type="submit" value="Login"/>
+            <input type="submit" name="Submit" value="Submit"/>
     	</form>
         <label>Click this to <a href="login.php">login</a> if you already have an account!</label><br>
         <?php echo $error ?>

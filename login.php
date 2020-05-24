@@ -7,7 +7,7 @@ $datastore = new DatastoreClient([
 ]);
 
 session_start();
-if(isset($_SESSION["id"])) {
+if( isset($_SESSION["Login"]) ) {
     header("Location: main.php");
 }
 
@@ -22,6 +22,7 @@ if ( isset( $_POST["Login"]) ) {
                 $_SESSION["id"] = $_POST["userid"];
                 $_SESSION["name"] = $user['name'];
                 $_SESSION["password"] = $user['password'];
+                $_SESSION["Login"] = true;
                 header("Location: main.php");
             } else {
                 $login_error = "<span>Wrong password.</span>";
@@ -32,6 +33,7 @@ if ( isset( $_POST["Login"]) ) {
     }
 }
 ?>
+
 <html>
     <head>
         <title>Eventica | Login</title>
@@ -40,18 +42,18 @@ if ( isset( $_POST["Login"]) ) {
     </head>
 	<body>
     <div>
-	    <h1><img src="eventica.png" alt="Eventica" width="42" height="42"> Login</h1>
+	    <h1>Login</h1>
     </div>
     <div>
 	    <h3>Please fill your data below to login.</h3>
     </div>
     <div>
-        <form action="login.php"  method="post">
+        <form action="login.php"  method="POST">
             <label>User ID:</label> <input type="text" name="userid">
             <br>
             <label>Password:</label> <input type="password" name="password">
             <br>
-            <input type="submit" value="Login"/>
+            <input type="submit" name= "Login" value="Login"/>
     	</form>
         <label>Click this to <a href="register.php">register</a>!</label><br>
         <?php echo $login_error ?>
